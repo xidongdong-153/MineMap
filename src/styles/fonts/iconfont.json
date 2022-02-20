@@ -1,0 +1,275 @@
+{
+  "id": "3193662",
+  "name": "可视化地图",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "26345058",
+      "name": "窗体",
+      "font_class": "chuangti",
+      "unicode": "e67d",
+      "unicode_decimal": 59005
+    },
+    {
+      "icon_id": "11994846",
+      "name": "气象资料",
+      "font_class": "qixiangziliao",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
+      "icon_id": "8820140",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e6c8",
+      "unicode_decimal": 59080
+    },
+    {
+      "icon_id": "26171506",
+      "name": "爱心&收藏",
+      "font_class": "a-aixinshoucang",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    },
+    {
+      "icon_id": "26171507",
+      "name": "导出",
+      "font_class": "daochu",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "26171508",
+      "name": "打印",
+      "font_class": "dayin",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "26171510",
+      "name": "灯&提示",
+      "font_class": "a-dengtishi",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "26171511",
+      "name": "放大",
+      "font_class": "fangda",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "26171520",
+      "name": "时钟&时间&历史",
+      "font_class": "a-shizhongshijianlishi",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "26171524",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "26171525",
+      "name": "新建",
+      "font_class": "xinjian",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "26171526",
+      "name": "缩小",
+      "font_class": "suoxiao",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "26171527",
+      "name": "设置&齿轮",
+      "font_class": "a-shezhichilun",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "26344923",
+      "name": "地球，星球",
+      "font_class": "a-diqiuxingqiu",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "3216473",
+      "name": "天气",
+      "font_class": "tianqi",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
+    },
+    {
+      "icon_id": "3881866",
+      "name": "阅读,文章",
+      "font_class": "yuedu",
+      "unicode": "e763",
+      "unicode_decimal": 59235
+    },
+    {
+      "icon_id": "27146029",
+      "name": "moon",
+      "font_class": "moon",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "27146937",
+      "name": "cloud_moon",
+      "font_class": "cloud_moon-01",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "27148753",
+      "name": "cloud_1",
+      "font_class": "cloud_1-01",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "27148853",
+      "name": "haze",
+      "font_class": "haze-01",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "27148880",
+      "name": "rain_snow",
+      "font_class": "rain_snow-01",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "27148897",
+      "name": "sun",
+      "font_class": "weather-01",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "27148916",
+      "name": "snow",
+      "font_class": "snow-01",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "27148972",
+      "name": "wind",
+      "font_class": "wind-01",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "27148998",
+      "name": "rain",
+      "font_class": "rain-01",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "27149090",
+      "name": "fog",
+      "font_class": "fog-01",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "27149132",
+      "name": "dust",
+      "font_class": "dust-01",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "27149189",
+      "name": "cloudy",
+      "font_class": "cloudy-01",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "27149221",
+      "name": "cloud",
+      "font_class": "cloud-01",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "27149254",
+      "name": "snow_1",
+      "font_class": "snow_1-01",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "27149438",
+      "name": "snow_samll",
+      "font_class": "snow_samll-01",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "27149475",
+      "name": "rain_small",
+      "font_class": "rain_small-01-copy",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "27149852",
+      "name": "rain_1",
+      "font_class": "rain_1-01",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "27149986",
+      "name": "rain_2",
+      "font_class": "rain_2-01",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "27150076",
+      "name": "snow_2",
+      "font_class": "snow_2-01",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "27150728",
+      "name": "lightning",
+      "font_class": "lightning-01",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "5483403",
+      "name": "地图",
+      "font_class": "ditu1",
+      "unicode": "e6db",
+      "unicode_decimal": 59099
+    },
+    {
+      "icon_id": "8620048",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e7a5",
+      "unicode_decimal": 59301
+    }
+  ]
+}
