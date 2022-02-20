@@ -12,5 +12,6 @@ import {} from 'vue'
 .app-main {
   position: relative;
   padding: 0 10px 0 10px;
+  height: calc(100% - 64px);
 }
 </style>
