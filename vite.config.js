@@ -7,7 +7,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/vite-gis/',
+  base: '/MineMap',
   server: {
     hmr: { overlay: false },
     host: 'localhost',
@@ -33,5 +33,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
       path: "path-browserify",
     }
+  },
+  build: {
+    outDir: 'docs'
   }
 })
