@@ -11,7 +11,7 @@ export default defineConfig({
   server: {
     hmr: { overlay: false },
     host: 'localhost',
-    port: 3000,
+    port: 8080,
     cors: true,
     proxy: {
       '/api': {
