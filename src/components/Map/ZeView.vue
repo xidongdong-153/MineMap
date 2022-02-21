@@ -5,6 +5,7 @@
 <script setup>
   import { inject, onMounted } from 'vue';
   import View from 'ol/View'
+  import { fromLonLat } from 'ol/proj';
 
   const props = defineProps({
         center: {
@@ -91,7 +92,14 @@
 
   const map = inject('map')
 
-  const view = new View(props)
+  const useProps = () => {
+    let result = JSON.parse(JSON.stringify(props))
+
+    result.center = fromLonLat(result.center)
+
+    return result
+  }
+  const view = new View(useProps())
 
   onMounted(() => {
     map.setView(view)
