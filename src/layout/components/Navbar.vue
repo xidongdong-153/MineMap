@@ -13,7 +13,7 @@
       <div class="header-right">
         <div class="icon-right">
           <el-link
-            href="https://github.com/Youzege"
+            href="https://github.com/Youzege/MineMap"
             target="_blank"
             :underline="false"
           >
