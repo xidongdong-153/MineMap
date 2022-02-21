@@ -11,9 +11,6 @@
 </template>
 
 <script setup>
-import { ZeMap, ZeView } from '@/components/Map';
-import { ZeTileLayer } from '@/components/Layers';
-import { ZeSourceOSM } from '@/components/Sources'
 import { } from 'vue';
 </script>
 
