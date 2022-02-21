@@ -7,17 +7,17 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/MineMap',
+  base: '/MineMap/',
   server: {
-    // hmr: { overlay: false },
+    hmr: { overlay: false },
     host: 'localhost',
     port: 3000,
-    // cors: true
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://localhost:8000'
-    //   }
-    // }
+    cors: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000'
+      }
+    }
   },
   plugins: [
     vue(),
@@ -35,6 +35,7 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: 'docs'
+    outDir: 'docs',
+    assetsPublicPath: './'
   }
 })
