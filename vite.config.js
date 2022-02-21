@@ -35,7 +35,6 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: 'docs',
-    assetsPublicPath: './'
+    outDir: 'docs'
   }
 })
