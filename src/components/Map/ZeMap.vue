@@ -9,32 +9,19 @@ import Map from 'ol/Map'
 import OSM from 'ol/source/OSM'
 import TileLayer from 'ol/layer/Tile'
 import View from 'ol/View'
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, provide } from 'vue'
 
-const props = defineProps({
-  layers: {
-    type: Object
-  }
-})
 
 const mapRef = ref(null)
 
-const layers = new TileLayer({
-  source: new OSM()
-})
+const map = new Map({})
 
-const map = new Map({
-  layers: [layers],
-  target: 'map',
-  view: new View({
-    center: [0, 0],
-    zoom: 2
-  })
-})
+provide('map', map)
 
 onMounted(() => {
   map.setTarget(mapRef.value)
 })
+
 </script>
 
 <style lang="scss" scoped>

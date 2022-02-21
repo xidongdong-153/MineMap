@@ -1,5 +1,8 @@
 import ZeMap from './ZeMap.vue'
+import ZeView from './ZeView.vue'
 
-export  {
-  ZeMap
+export {
+  ZeMap,
+  ZeView
 }
+

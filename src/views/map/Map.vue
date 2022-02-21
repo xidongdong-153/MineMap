@@ -1,14 +1,20 @@
 <template>
   <div class="map-container">
     <ze-map>
-      <div class="slot"></div>
+      <ze-view></ze-view>
+
+      <ze-tile-layer>
+        <ze-source-OSM></ze-source-OSM>
+      </ze-tile-layer>
     </ze-map>
   </div>
 </template>
 
 <script setup>
-import {} from 'vue'
-import { ZeMap } from '@/components/Map'
+import { ZeMap, ZeView } from '@/components/Map';
+import { ZeTileLayer } from '@/components/Layers';
+import { ZeSourceOSM } from '@/components/Sources'
+import { } from 'vue';
 </script>
 
 <style lang="scss" scoped>
