@@ -9,15 +9,15 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 export default defineConfig({
   base: '/MineMap',
   server: {
-    hmr: { overlay: false },
+    // hmr: { overlay: false },
     host: 'localhost',
     port: 3000,
-    cors: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8000'
-      }
-    }
+    // cors: true
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://localhost:8000'
+    //   }
+    // }
   },
   plugins: [
     vue(),
