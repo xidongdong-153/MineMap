@@ -10,8 +10,6 @@
 
   let source = computed(() => new OSM())
 
-  console.log(layer);
-
   onMounted(() => {
     layer.setSource(source.value)
   })

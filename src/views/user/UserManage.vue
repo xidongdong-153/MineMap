@@ -1,5 +1,5 @@
 <template>
-  <div>后台管理</div>
+  <div>这里还未开发...</div>
 </template>
 
 <script setup>
