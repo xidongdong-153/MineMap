@@ -17,6 +17,19 @@
           :layer="noteLayer"
         ></ze-source-WMTS>
       </ze-tile-layer>
+
+      <ze-overlay :position="[113.27, 23.1]">
+        <template v-slot="slotProps">
+          <el-card class="box-card" shadow="hover">
+            <template #header>
+              <div class="card-header">
+                <span>坐标查看</span>
+              </div>
+            </template>
+            <div>Position: {{ slotProps.position }}</div>
+          </el-card>
+        </template>
+      </ze-overlay>
     </ze-map>
   </div>
 </template>
@@ -49,5 +62,13 @@ const attributions = '天地图XYZ'
     position: absolute;
     z-index: 1;
   }
+  .overlay-content {
+    width: 200px;
+    height: 50px;
+    background: #efefef;
+    box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
+    padding: 10px 20px;
+    font-size: 16px;
+}
 }
 </style>
