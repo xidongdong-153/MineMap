@@ -18,24 +18,19 @@
         ></ze-source-WMTS>
       </ze-tile-layer>
 
-      <ze-overlay :position="[113.27, 23.1]">
-        <template v-slot="slotProps">
-          <el-card class="box-card" shadow="hover">
-            <template #header>
-              <div class="card-header">
-                <span>坐标查看</span>
-              </div>
-            </template>
-            <div>Position: {{ slotProps.position }}</div>
-          </el-card>
-        </template>
-      </ze-overlay>
+        <ze-overlay :position="[0, 0]">
+          <ze-popup>
+
+          </ze-popup>
+        </ze-overlay>
+
     </ze-map>
   </div>
 </template>
 
 <script setup>
-import {} from 'vue'
+import { ref } from 'vue'
+
 
 const center = [113.27, 23.1]
 

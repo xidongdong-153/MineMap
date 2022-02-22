@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-  import { ref, computed, inject, onMounted } from 'vue';
+  import { ref, computed, inject, onMounted, provide } from 'vue';
   import Overlay from 'ol/Overlay'
   import { fromLonLat } from 'ol/proj';
 
@@ -35,6 +35,8 @@
     map.addOverlay(overlay.value)
     overlay.value.setElement(htmlContent.value)
   })
+
+  provide('overlay', overlay.value)
 </script>
 
 <style lang='scss' scoped>
