@@ -17,6 +17,17 @@ export default {
         title: '天气预报',
         icon: 'icon-cloud_moon-01'
       }
+    },
+    {
+      path: '/weather/typhoon-path',
+      component: () =>
+        import(
+          /* webpackChunkName: "article-ranking" */ '@/views/typhoon-path'
+        ),
+      meta: {
+        title: '台风路径',
+        icon: 'icon-tianqiicon_taifeng'
+      }
     }
   ]
 }

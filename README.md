@@ -20,7 +20,7 @@
 
 🌪️项目目标向气象可视化方向发展
 
-访问`github-page`:  [地图可视化 (youzege.github.io)](https://youzege.github.io/MineMap/)
+访问`github-page`:  [地图可视化](http://112.74.95.70:81/#/map)
 
 
 

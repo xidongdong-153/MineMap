@@ -4,30 +4,42 @@
       <ze-view :center="center" :zoom="12"></ze-view>
 
       <ze-tile-layer>
-        <ze-source-XYZ
+        <ze-source-WMTS
           :url="baseUrl"
           :attributions="attributions"
-        ></ze-source-XYZ>
+          :layer="baseLayer"
+        ></ze-source-WMTS>
       </ze-tile-layer>
       <ze-tile-layer>
-        <ze-source-XYZ
+        <ze-source-WMTS
           :url="noteUrl"
           :attributions="attributions"
-        ></ze-source-XYZ>
+          :layer="noteLayer"
+        ></ze-source-WMTS>
       </ze-tile-layer>
+
+      <ze-overlay :position="[0, 0]">
+        <ze-popup> </ze-popup>
+      </ze-overlay>
     </ze-map>
   </div>
 </template>
 
 <script setup>
-import {} from 'vue'
+import { ref } from 'vue'
 
 const center = [113.27, 23.1]
 
+// const baseUrl = 'http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=40e50cca6823476482e8721bb2eee900'
+// const noteUrl = 'http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=40e50cca6823476482e8721bb2eee900'
+
 const baseUrl =
-  'https://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=40e50cca6823476482e8721bb2eee900'
+  'http://t{0-7}.tianditu.gov.cn/vec_w/wmts?tk=40e50cca6823476482e8721bb2eee900'
 const noteUrl =
-  'https://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=40e50cca6823476482e8721bb2eee900'
+  'http://t{0-7}.tianditu.gov.cn/cva_w/wmts?tk=40e50cca6823476482e8721bb2eee900'
+
+const baseLayer = 'vec',
+  noteLayer = 'cva'
 
 const attributions = '天地图XYZ'
 </script>
@@ -40,6 +52,14 @@ const attributions = '天地图XYZ'
   .slot {
     position: absolute;
     z-index: 1;
+  }
+  .overlay-content {
+    width: 200px;
+    height: 50px;
+    background: #efefef;
+    box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
+    padding: 10px 20px;
+    font-size: 16px;
   }
 }
 </style>
