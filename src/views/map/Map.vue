@@ -18,15 +18,19 @@
         ></ze-source-WMTS>
       </ze-tile-layer>
 
-      <ze-overlay :position="[0, 0]">
-        <ze-popup> </ze-popup>
-      </ze-overlay>
+      <!-- <ze-overlay :position="[0, 0]">
+          <ze-popup>
+
+          </ze-popup>
+        </ze-overlay> -->
+      <tool-box class="tool-box"></tool-box>
     </ze-map>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ToolBox from './components/ToolBox.vue'
 
 const center = [113.27, 23.1]
 
@@ -60,6 +64,12 @@ const attributions = '天地图XYZ'
     box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
     padding: 10px 20px;
     font-size: 16px;
+  }
+  .tool-box {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    z-index: 10;
   }
 }
 </style>
