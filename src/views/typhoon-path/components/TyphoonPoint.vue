@@ -4,7 +4,7 @@
 
 <script setup>
 import { typhoonPathData } from '@/api/weather'
-import { ref, inject, onActivated } from 'vue'
+import { ref, inject, onActivated, onMounted } from 'vue'
 import { Vector as VectorLayer } from 'ol/layer'
 import { Vector as VectorSource } from 'ol/source'
 import Feature from 'ol/Feature'
@@ -97,6 +97,53 @@ const judgeColorByWindLevel = (windlevel) => {
 				}
   return map[windlevel]
 }
+
+let lastZoomPoint = ref(null)
+
+// 处理point hover事件
+const handleHoverOnMap = () => {
+  map.on('pointermove', e => {
+    const pixel = e.pixel
+    const feature = map.forEachFeatureAtPixel(pixel, feature => {
+      return feature
+    })
+
+    if(feature && typeJudgeFeature(feature) === 'typhoonPoint') {
+      map.getTargetElement().style.cursor = 'pointer'
+      handleDeletePointZoom()
+
+      feature.getStyle().getImage().setRadius(8)
+      feature.changed()
+      lastZoomPoint.value = feature
+    }else {
+      handleDeletePointZoom()
+      map.getTargetElement().style.cursor = ''
+    }
+  })
+}
+
+// 清除上一个鼠标事件
+const handleDeletePointZoom = () => {
+  if (lastZoomPoint.value != null) {
+    lastZoomPoint.value.getStyle().getImage().setRadius(4)
+    lastZoomPoint.value.changed()
+  }
+}
+
+// 判断feature类型
+const typeJudgeFeature =(feature) => {
+  if (feature.get('typhoonPoint')) {
+    return 'typhoonPoint'
+  } else if (feature.get('typhoonSolar')) {
+    return 'typhoonSolar'
+  } else {
+    return 'isFeatureButDontNeedTodo'
+  }
+}
+
+onMounted(() => {
+  handleHoverOnMap()
+})
 </script>
 
 <style lang="scss" scoped></style>
