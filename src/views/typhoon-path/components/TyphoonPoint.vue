@@ -122,6 +122,23 @@ const handleHoverOnMap = () => {
   })
 }
 
+const handleClickOnMap = () => {
+  map.on('click', e => {
+    const pixel = e.pixel
+    const feature = map.forEachFeatureAtPixel(pixel, feature => {
+      return feature
+    })
+
+    if(feature) {
+      if(feature.get('typhoonPoint')) {
+        console.log('you click tyhoonPoint!');
+      }
+    }else {
+        console.log('no click feature');
+      }
+  })
+}
+
 // 清除上一个鼠标事件
 const handleDeletePointZoom = () => {
   if (lastZoomPoint.value != null) {
@@ -143,6 +160,7 @@ const typeJudgeFeature =(feature) => {
 
 onMounted(() => {
   handleHoverOnMap()
+  handleClickOnMap()
 })
 </script>
 
