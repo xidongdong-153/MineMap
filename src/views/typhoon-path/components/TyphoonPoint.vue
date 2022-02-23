@@ -8,7 +8,7 @@ import { ref, inject, onActivated } from 'vue'
 import { Vector as VectorLayer } from 'ol/layer'
 import { Vector as VectorSource } from 'ol/source'
 import Feature from 'ol/Feature'
-import { Point } from 'ol/geom'
+import { LineString, Point } from 'ol/geom'
 import { Fill, Circle, Style } from 'ol/style'
 import { fromLonLat } from 'ol/proj'
 
@@ -36,7 +36,13 @@ const drawTyphoonPathIntervals = async () => {
       return
     }
     const featurePoint = drawPoint(points, index)
+
     sourec.addFeature(featurePoint)
+    if(index > 0) {
+      const featureLine = drawLine(points, index)
+      sourec.addFeature(featureLine)
+    }
+
     index++
   }, 50)
   map.addLayer(layer)
@@ -55,7 +61,7 @@ const drawPoint = (points, index) => {
     new Style({
       image: new Circle({
         fill: new Fill({
-          color: 'red'
+          color: judgeColorByWindLevel(points[index].strong)
         }),
         radius: 4
       })
@@ -63,6 +69,33 @@ const drawPoint = (points, index) => {
   )
   featurePoint.set('typhoonPoint', true)
   return featurePoint
+}
+
+// 线绘制函数
+const drawLine = (points, index) => {
+  const position = [points[index].lng, points[index].lat]
+  const nextPosition = [points[index - 1].lng, points[index - 1].lat]
+
+  const featureLine = new Feature({
+    geometry: new LineString([fromLonLat(position), fromLonLat(nextPosition)])
+  })
+
+  featureLine.set('typhoonLine', true)
+
+  return featureLine
+}
+
+// 台风强度表
+const judgeColorByWindLevel = (windlevel) => {
+  const map = {
+					热带风暴: 'red',
+					热带低压: 'blue',
+					强热带风暴: 'purple',
+					台风: 'orange',
+					强台风: 'yellow',
+					超强台风: 'salmon'
+				}
+  return map[windlevel]
 }
 </script>
 
