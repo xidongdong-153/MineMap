@@ -1,7 +1,9 @@
 import Feature from 'ol/Feature'
 import { LineString, Point, Polygon } from 'ol/geom'
+import Overlay from 'ol/Overlay'
 import { fromLonLat } from 'ol/proj'
 import { Circle, Fill, Icon, Style } from 'ol/style'
+import { ref } from 'vue'
 
 // 点绘制函数
 const drawPoint = (points, index) => {
@@ -17,11 +19,12 @@ const drawPoint = (points, index) => {
         fill: new Fill({
           color: judgeColorByWindLevel(points[index].strong)
         }),
-        radius: 4
+        radius: 5
       })
     })
   )
   featurePoint.set('typhoonPoint', true)
+  featurePoint.set("points", points[index])
   return featurePoint
 }
 
@@ -113,9 +116,27 @@ const judgeColorByWindLevel = (windlevel) => {
   return map[windlevel]
 }
 
+// 台风信息叠加层
+const setTyphoonDataOverlay = (map, typhoonInfo) => {
+  let typhoonOverlay = ref(null)
+  const overlay = new Overlay({
+    element: typhoonInfo,
+    autoPan: true,
+    autoPanAnimation: {
+      duration: 250,
+    },
+  })
+  overlay.setPosition(undefined)
+  typhoonOverlay.value = overlay
+  console.log(typhoonInfo);
+  map.addOverlay(overlay)
+  return typhoonOverlay.value
+}
+
 export {
   drawPoint,
   drawLine,
   drawSolar,
-  addSolarIcon
+  addSolarIcon,
+  setTyphoonDataOverlay
 }

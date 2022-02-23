@@ -1,20 +1,29 @@
 <template>
-  <div v-if="false"></div>
+  <div ref="typhoonInfo">
+    <typhoon-point-detail
+      :typhoonData="typhoonData"
+      :typhoonName="typhoonName"
+    ></typhoon-point-detail>
+  </div>
 </template>
 
 <script setup>
 import { typhoonPathData } from '@/api/weather'
-import { ref, inject } from 'vue'
+import { ref, inject, watch, onMounted, computed } from 'vue'
 import { Vector as VectorLayer } from 'ol/layer'
 import { Vector as VectorSource } from 'ol/source'
 import { drawPoint, drawLine, drawSolar, addSolarIcon } from './useDraw'
 import { handleHoverOnMap, handleClickOnMap } from './useMouse'
-
+import TyphoonPointDetail from './TyphoonPointDetail.vue'
+import { setTyphoonDataOverlay } from './useDraw'
 
 const map = inject('map')
 
+const typhoonName = ref('')
+
 const getTyphoonData = async () => {
   const { data } = await typhoonPathData()
+  typhoonName.value = data.name
   return data
 }
 let lastShowSolar = ref(null)
@@ -38,7 +47,7 @@ const drawTyphoonPathIntervals = async () => {
     const featurePoint = drawPoint(points, index)
 
     source.addFeature(featurePoint)
-    if(index > 0) {
+    if (index > 0) {
       const featureLine = drawLine(points, index)
       source.addFeature(featureLine)
     }
@@ -54,10 +63,10 @@ const drawTyphoonPathIntervals = async () => {
       source.addFeature(featureSolar)
     }
 
-    if(index <= points.length - 1) {
+    if (index <= points.length - 1) {
       let currentIcon = addSolarIcon(points, index)
       let removeIcon = lastIcon
-      if(removeIcon != null) {
+      if (removeIcon != null) {
         source.removeFeature(removeIcon)
       }
       lastIcon = currentIcon
@@ -70,11 +79,15 @@ const drawTyphoonPathIntervals = async () => {
 }
 drawTyphoonPathIntervals()
 
+let typhoonData = ref({})
 
+let typhoonInfo = ref(null)
 
-handleHoverOnMap(map)
+onMounted(() => {
+  handleHoverOnMap(map, typhoonInfo.value, typhoonData)
+})
+
 handleClickOnMap(map)
-
 </script>
 
 <style lang="scss" scoped></style>

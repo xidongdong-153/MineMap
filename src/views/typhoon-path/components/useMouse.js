@@ -1,8 +1,15 @@
+import { fromLonLat } from 'ol/proj'
 import { ref } from 'vue'
+import { setTyphoonDataOverlay } from './useDraw'
+
+
 let lastZoomPoint = ref(null)
 
+
 // 处理point hover事件
-const handleHoverOnMap = (map) => {
+const handleHoverOnMap = (map, typhoonInfo, typhoonData) => {
+
+  const overlay = setTyphoonDataOverlay(map, typhoonInfo)
   map.on('pointermove', e => {
     const pixel = e.pixel
     const feature = map.forEachFeatureAtPixel(pixel, feature => {
@@ -10,8 +17,12 @@ const handleHoverOnMap = (map) => {
     })
 
     if(feature && typeJudgeFeature(feature) === 'typhoonPoint') {
-      map.getTargetElement().style.cursor = 'pointer'
+      typhoonData.value = feature.get('points')
+
       handleDeletePointZoom()
+      map.getTargetElement().style.cursor = 'pointer'
+
+      setOverlayPosition(typhoonData.value, overlay)
 
       feature.getStyle().getImage().setRadius(8)
       feature.changed()
@@ -19,8 +30,21 @@ const handleHoverOnMap = (map) => {
     }else {
       handleDeletePointZoom()
       map.getTargetElement().style.cursor = ''
+      typhoonData.value = {}
+      removeOverlay(overlay)
     }
   })
+}
+
+// 设置弹窗叠加层位置
+const setOverlayPosition = ( points, overlay) => {
+
+  const position = fromLonLat([points.lng, points.lat]);
+  overlay.setPosition(position)
+}
+
+const removeOverlay = (overlay) => {
+  overlay.setPosition(undefined)
 }
 
 const handleClickOnMap = (map) => {
@@ -43,7 +67,7 @@ const handleClickOnMap = (map) => {
 // 清除上一个鼠标事件
 const handleDeletePointZoom = () => {
   if (lastZoomPoint.value != null) {
-    lastZoomPoint.value.getStyle().getImage().setRadius(4)
+    lastZoomPoint.value.getStyle().getImage().setRadius(5)
     lastZoomPoint.value.changed()
   }
 }
@@ -61,5 +85,5 @@ const typeJudgeFeature =(feature) => {
 
 export {
   handleHoverOnMap,
-  handleClickOnMap
+  handleClickOnMap,
 }
