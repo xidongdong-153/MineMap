@@ -1,32 +1,41 @@
 <template>
-  <div v-if="false"></div>
+  <div ref="typhoonInfo">
+    <typhoon-point-detail
+      :typhoonData="typhoonData"
+      :typhoonName="typhoonName"
+    ></typhoon-point-detail>
+  </div>
 </template>
 
 <script setup>
 import { typhoonPathData } from '@/api/weather'
-import { ref, inject, onActivated } from 'vue'
+import { ref, inject, watch, onMounted, computed } from 'vue'
 import { Vector as VectorLayer } from 'ol/layer'
 import { Vector as VectorSource } from 'ol/source'
-import Feature from 'ol/Feature'
-import { Point } from 'ol/geom'
-import { Fill, Circle, Style } from 'ol/style'
-import { fromLonLat } from 'ol/proj'
+import { drawPoint, drawLine, drawSolar, addSolarIcon } from './useDraw'
+import { handleHoverOnMap, handleClickOnMap } from './useMouse'
+import TyphoonPointDetail from './TyphoonPointDetail.vue'
+import { setTyphoonDataOverlay } from './useDraw'
 
 const map = inject('map')
 
-const typhoonData = ref({})
+const typhoonName = ref('')
 
 const getTyphoonData = async () => {
   const { data } = await typhoonPathData()
+  typhoonName.value = data.name
   return data
 }
+let lastShowSolar = ref(null)
+let lastIcon = ref(null)
 
 const drawTyphoonPathIntervals = async () => {
   const { points } = await getTyphoonData()
 
   const layer = new VectorLayer()
-  const sourec = new VectorSource()
-  layer.setSource(sourec)
+  const source = new VectorSource()
+
+  layer.setSource(source)
 
   let index = 0
 
@@ -36,34 +45,49 @@ const drawTyphoonPathIntervals = async () => {
       return
     }
     const featurePoint = drawPoint(points, index)
-    sourec.addFeature(featurePoint)
+
+    source.addFeature(featurePoint)
+    if (index > 0) {
+      const featureLine = drawLine(points, index)
+      source.addFeature(featureLine)
+    }
+
+    // 按照特征点的风力让台风风圈单独显示
+    if (points[index].radius7.length != 0 || points[index].radius7 != null) {
+      let featureSolar = drawSolar(points[index])
+      let currentSolar = lastShowSolar
+      if (currentSolar != null) {
+        source.removeFeature(lastShowSolar)
+      }
+      lastShowSolar = featureSolar
+      source.addFeature(featureSolar)
+    }
+
+    if (index <= points.length - 1) {
+      let currentIcon = addSolarIcon(points, index)
+      let removeIcon = lastIcon
+      if (removeIcon != null) {
+        source.removeFeature(removeIcon)
+      }
+      lastIcon = currentIcon
+      source.addFeature(currentIcon)
+    }
+
     index++
   }, 50)
   map.addLayer(layer)
 }
 drawTyphoonPathIntervals()
 
-// 点绘制函数
-const drawPoint = (points, index) => {
-  const position = [points[index].lng, points[index].lat]
-  // setSourec
-  const featurePoint = new Feature({
-    geometry: new Point(fromLonLat(position))
-  })
-  // setStyle
-  featurePoint.setStyle(
-    new Style({
-      image: new Circle({
-        fill: new Fill({
-          color: 'red'
-        }),
-        radius: 4
-      })
-    })
-  )
-  featurePoint.set('typhoonPoint', true)
-  return featurePoint
-}
+let typhoonData = ref({})
+
+let typhoonInfo = ref(null)
+
+onMounted(() => {
+  handleHoverOnMap(map, typhoonInfo.value, typhoonData)
+})
+
+handleClickOnMap(map)
 </script>
 
 <style lang="scss" scoped></style>
