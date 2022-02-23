@@ -8,7 +8,7 @@ import { ref, inject, onActivated, onMounted } from 'vue'
 import { Vector as VectorLayer } from 'ol/layer'
 import { Vector as VectorSource } from 'ol/source'
 import Feature from 'ol/Feature'
-import { LineString, Point } from 'ol/geom'
+import { LineString, Point, Polygon } from 'ol/geom'
 import { Fill, Circle, Style } from 'ol/style'
 import { fromLonLat } from 'ol/proj'
 
@@ -20,13 +20,14 @@ const getTyphoonData = async () => {
   const { data } = await typhoonPathData()
   return data
 }
-
+let lastShowSolar = ref(null)
 const drawTyphoonPathIntervals = async () => {
   const { points } = await getTyphoonData()
 
   const layer = new VectorLayer()
-  const sourec = new VectorSource()
-  layer.setSource(sourec)
+  const source = new VectorSource()
+
+  layer.setSource(source)
 
   let index = 0
 
@@ -37,10 +38,21 @@ const drawTyphoonPathIntervals = async () => {
     }
     const featurePoint = drawPoint(points, index)
 
-    sourec.addFeature(featurePoint)
+    source.addFeature(featurePoint)
     if(index > 0) {
       const featureLine = drawLine(points, index)
-      sourec.addFeature(featureLine)
+      source.addFeature(featureLine)
+    }
+
+    // 按照特征点的风力让台风风圈单独显示
+    if (points[index].radius7.length != 0 || points[index].radius7 != null) {
+      let featureSolar = drawSolar(points[index])
+      let currentSolar = lastShowSolar
+      if (currentSolar != null) {
+        source.removeFeature(lastShowSolar)
+      }
+      lastShowSolar = featureSolar
+      source.addFeature(featureSolar)
     }
 
     index++
@@ -52,7 +64,7 @@ drawTyphoonPathIntervals()
 // 点绘制函数
 const drawPoint = (points, index) => {
   const position = [points[index].lng, points[index].lat]
-  // setSourec
+  // setsource
   const featurePoint = new Feature({
     geometry: new Point(fromLonLat(position))
   })
@@ -83,6 +95,48 @@ const drawLine = (points, index) => {
   featureLine.set('typhoonLine', true)
 
   return featureLine
+}
+
+// 风圈绘制函数
+const drawSolar = (points) => {
+  let radiusArr = points.radius7.split('|').map((item) => {
+    return parseFloat(item)
+  })
+  // 定义中心点、多边形半径
+  let Configs = {
+    CIRCLE_CENTER_X: parseFloat(points.lng),
+    CIRCLE_CENTER_Y: parseFloat(points.lat),
+    CIRCLE_R: {
+      SE: radiusArr[0] / 100,
+      NE: radiusArr[1] / 100,
+      NW: radiusArr[2] / 100,
+      SW: radiusArr[3] / 100
+    }
+  }
+  let positions = []
+  let _interval = 6
+  for (let i = 0; i < 360 / _interval; i++) {
+    let _r = 0
+    let _ang = i * _interval
+    if (_ang > 0 && _ang <= 90) {
+      _r = Configs.CIRCLE_R.NE
+    } else if (_ang > 90 && _ang <= 180) {
+      _r = Configs.CIRCLE_R.NW
+    } else if (_ang > 180 && _ang <= 270) {
+      _r = Configs.CIRCLE_R.SW
+    } else {
+      _r = Configs.CIRCLE_R.SE
+    }
+
+    let x = Configs.CIRCLE_CENTER_X + _r * Math.cos((_ang * 3.14) / 180)
+    let y = Configs.CIRCLE_CENTER_Y + _r * Math.sin((_ang * 3.14) / 180)
+    positions.push(fromLonLat([x, y]))
+  }
+  let feature = new Feature({
+    geometry: new Polygon([positions])
+  })
+  feature.set('typhoonSolar', true)
+  return feature
 }
 
 // 台风强度表
