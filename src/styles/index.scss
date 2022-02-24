@@ -2,6 +2,7 @@
 @import './mixin.scss';
 @import './element.scss';
 @import './element-menu.scss';
+@import './openlayers.scss';
 
 
 html,
@@ -63,31 +64,4 @@ div:focus {
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
-}
-
-.map .ol-zoomslider {
-  top: 8px;
-  left: 40px;
-  background-color: rgba(132, 0, 255, 0.2);
-  width: 200px;
-  height: 15px;
-  padding: 0;
-  box-shadow: 0 0 5px rgb(9, 10, 82);
-  border-radius: 7.5px;
-}
-
-.map .ol-zoomslider:hover {
-  background-color: rgba(16, 87, 240, 0.3);
-}
-
-.map .ol-zoomslider-thumb {
-  height: 15px;
-  width: 15px;
-  margin: 0;
-  filter: none;
-  background-color: rgba(149, 56, 236, 0.6);
-  border-radius: 7.5px;
-}
-.map a.ol-zoomslider-handle:hover {
-  background-color: rgba(0, 183, 255, 0.7);
 }
