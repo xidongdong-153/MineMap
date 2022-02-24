@@ -26,7 +26,7 @@
 import { ref, onMounted } from 'vue'
 import TyphoonPoint from './components/TyphoonPoint.vue'
 
-const center = [113.27, 23.1]
+const center = [124.27, 31.1]
 
 const baseUrl =
     'http://t{0-7}.tianditu.gov.cn/vec_w/wmts?tk=40e50cca6823476482e8721bb2eee900',
