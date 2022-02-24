@@ -11,8 +11,13 @@
 </template>
 
 <script setup>
-import {} from 'vue'
+import { inject } from 'vue'
 import { Briefcase } from '@element-plus/icons-vue'
+import { ZoomSlider } from 'ol/control'
+const map = inject('map')
+
+const zoomslider = new ZoomSlider()
+map.addControl(zoomslider)
 </script>
 
 <style lang="scss" scoped></style>
