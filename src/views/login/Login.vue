@@ -81,7 +81,35 @@ const handleLogin = () => {
   position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(#141e30, #243b55);
+  background: linear-gradient(
+    135deg,
+    hsl(219, 44%, 16%),
+    hsl(219, 41%, 13%),
+    hsl(212, 40%, 24%),
+    hsl(210, 32%, 29%)
+  );
+  // background: linear-gradient(
+  //   135deg,
+  //   hsl(170deg, 80%, 70%),
+  //   hsl(190deg, 80%, 70%),
+  //   hsl(250deg, 80%, 70%),
+  //   hsl(320deg, 80%, 70%)
+  // );
+  animation: wrapper 10s linear infinite;
+  background-size: 200% 200%;
+  @keyframes wrapper {
+    0%,
+    100% {
+      background-position: 0% 0%;
+    }
+    30%,
+    80% {
+      background-position: 50% 50%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+  }
 }
 .login {
   position: absolute;
@@ -96,6 +124,7 @@ const handleLogin = () => {
   border-radius: 10px;
   .login-title {
     margin: 0 0 30px;
+    height: 40px;
     padding: 0;
     color: #fff;
     text-align: center;
@@ -139,7 +168,6 @@ const handleLogin = () => {
     padding: 10px 20px;
     width: 120px;
     height: 40px;
-    color: #03e9f4;
     font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
@@ -152,6 +180,24 @@ const handleLogin = () => {
     outline: none;
     border: none;
     cursor: pointer;
+    animation: login 2s linear infinite;
+    @keyframes login {
+      0% {
+        color: #fff;
+      }
+      25% {
+        color: #95f2f7;
+      }
+      50% {
+        color: #03e9f4;
+      }
+      75% {
+        color: #95f2f7;
+      }
+      100% {
+        color: #fff;
+      }
+    }
 
     .login-animate {
       position: absolute;
@@ -241,8 +287,31 @@ const handleLogin = () => {
     background: #03e9f4;
     color: #fff;
     border-radius: 5px;
-    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
-      0 0 100px #03e9f4;
+    // box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+    //   0 0 100px #03e9f4;
+    animation: submitHover 3s linear infinite;
+    @keyframes submitHover {
+      0% {
+        box-shadow: 0 0 2px #5ef1fc, 0 0 17px #5ef1fc, 0 0 35px #5ef1fc,
+          0 0 80px #5ef1fc;
+      }
+      25% {
+        box-shadow: 0 0 4px #4eebf7, 0 0 22px #4eebf7, 0 0 42px #4eebf7,
+          0 0 90px #4eebf7;
+      }
+      50% {
+        box-shadow: 0 0 6px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+          0 0 100px #03e9f4;
+      }
+      75% {
+        box-shadow: 0 0 4px #4eebf7, 0 0 22px #4eebf7, 0 0 42px #4eebf7,
+          0 0 90px #4eebf7;
+      }
+      100% {
+        box-shadow: 0 0 2px #5ef1fc, 0 0 17px #5ef1fc, 0 0 35px #5ef1fc,
+          0 0 80px #5ef1fc;
+      }
+    }
   }
 }
 </style>
