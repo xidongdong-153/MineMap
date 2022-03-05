@@ -56,11 +56,22 @@ const handleLogin = () => {
   if (loginForm.value.username !== '' && loginForm.value.password !== '') {
     ElMessage({
       message: '登陆成功！',
-      type: 'success'
+      type: 'success',
+      center: true,
+      grouping: true,
+      duration: 2000
     })
     setTimeout(() => {
       router.push('/map')
     }, 700)
+  } else {
+    ElMessage({
+      message: '好像没有输入账号或者密码喔~',
+      type: 'warning',
+      center: true,
+      grouping: true,
+      duration: 2000
+    })
   }
 }
 </script>

@@ -48,7 +48,9 @@ const router = useRouter()
 const handleLogout = () => {
   ElMessage({
     message: '退出登录~',
-    type: 'success'
+    type: 'success',
+    grouping: true,
+    duration: 2000
   })
   setTimeout(() => {
     router.push('/')
