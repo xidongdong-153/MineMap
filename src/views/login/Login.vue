@@ -18,11 +18,12 @@
             type="password"
             required=""
             v-model="loginForm.password"
+            autocomplete
           />
           <label class="login-label">密码</label>
         </el-form-item>
         <el-form-item>
-          <button class="login-submit" @click="handleLogin">
+          <button class="login-submit" @click.prevent="handleLogin">
             <span class="login-animate"></span>
             <span class="login-animate"></span>
             <span class="login-animate"></span>
@@ -53,15 +54,12 @@ const router = useRouter()
 
 const handleLogin = () => {
   if (loginForm.value.username !== '' && loginForm.value.password !== '') {
-    loding.value = true
-    console.log(loginForm.value)
-    loding.value = false
     ElMessage({
       message: '登陆成功！',
       type: 'success'
     })
     setTimeout(() => {
-      router.push('map')
+      router.push('/map')
     }, 700)
   }
 }
