@@ -5,6 +5,7 @@ import store from '@/store'
 import 'ol/ol.css';
 import '@/styles/index.scss'
 import '@/styles/fonts/iconfont.js'
+import 'element-plus/dist/index.css'
 
 const app = createApp(App)
 

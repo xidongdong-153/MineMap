@@ -12,6 +12,13 @@ const privateRoutes = [
 
 const publicRoutes = [
   {
+    path: '/login',
+    component: () => import('@/views/login/index'),
+    meta: {
+      title: '登录'
+    }
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/map',
