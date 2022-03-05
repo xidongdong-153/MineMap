@@ -12,15 +12,24 @@
       </div>
       <div class="header-right">
         <div class="icon-right">
-          <el-link
-            href="https://github.com/Youzege/MineMap"
-            target="_blank"
-            :underline="false"
-          >
-            <svg class="icon icon-github" aria-hidden="true">
-              <use xlink:href="#icon-github"></use>
-            </svg>
-          </el-link>
+          <el-dropdown>
+            <el-link
+              href="https://github.com/Youzege/MineMap"
+              target="_blank"
+              :underline="false"
+            >
+              <svg class="icon icon-github" aria-hidden="true">
+                <use xlink:href="#icon-github"></use>
+              </svg>
+            </el-link>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item @click="handleLogout"
+                  >退出登录</el-dropdown-item
+                >
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </div>
       </div>
     </div>
@@ -32,6 +41,19 @@ import {} from 'vue'
 import { UserFilled } from '@element-plus/icons-vue'
 import Menu from './NavbarMenu'
 import { useRouter } from 'vue-router'
+import { ArrowDown } from '@element-plus/icons-vue'
+import { ElMessage } from 'element-plus'
+
+const router = useRouter()
+const handleLogout = () => {
+  ElMessage({
+    message: '退出登录~',
+    type: 'success'
+  })
+  setTimeout(() => {
+    router.push('/')
+  }, 300)
+}
 </script>
 
 <style lang="scss" scoped>

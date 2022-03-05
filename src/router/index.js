@@ -21,7 +21,7 @@ const publicRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/map',
+    redirect: '/login',
     children: [
       {
         name: 'map',

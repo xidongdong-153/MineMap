@@ -1,7 +1,7 @@
 <template>
   <div class="login-wrapper">
     <div class="login">
-      <h2 class="login-title">Login</h2>
+      <h2 class="login-title">登录</h2>
       <el-form ref="loginFormRef" :model="loginForm" label-width="120px">
         <el-form-item class="login-box" prop="username">
           <input
@@ -90,6 +90,7 @@ const handleLogin = () => {
     padding: 0;
     color: #fff;
     text-align: center;
+    user-select: none;
   }
   .login-box {
     position: relative;
@@ -114,6 +115,7 @@ const handleLogin = () => {
     color: #fff;
     pointer-events: none;
     transition: 0.5s;
+    user-select: none;
   }
   .login-input:focus ~ .login-label,
   .login-input:valid ~ .login-label {
