@@ -2,21 +2,18 @@ import { fromLonLat } from 'ol/proj'
 import { ref } from 'vue'
 import { setTyphoonDataOverlay } from './useDraw'
 
-
 let lastZoomPoint = ref(null)
-
 
 // 处理point hover事件
 const handleHoverOnMap = (map, typhoonInfo, typhoonData) => {
-
   const overlay = setTyphoonDataOverlay(map, typhoonInfo)
-  map.on('pointermove', e => {
+  map.on('pointermove', (e) => {
     const pixel = e.pixel
-    const feature = map.forEachFeatureAtPixel(pixel, feature => {
+    const feature = map.forEachFeatureAtPixel(pixel, (feature) => {
       return feature
     })
 
-    if(feature && typeJudgeFeature(feature) === 'typhoonPoint') {
+    if (feature && typeJudgeFeature(feature) === 'typhoonPoint') {
       typhoonData.value = feature.get('points')
 
       handleDeletePointZoom()
@@ -27,7 +24,7 @@ const handleHoverOnMap = (map, typhoonInfo, typhoonData) => {
       feature.getStyle().getImage().setRadius(8)
       feature.changed()
       lastZoomPoint.value = feature
-    }else {
+    } else {
       handleDeletePointZoom()
       map.getTargetElement().style.cursor = ''
       typhoonData.value = {}
@@ -37,9 +34,8 @@ const handleHoverOnMap = (map, typhoonInfo, typhoonData) => {
 }
 
 // 设置弹窗叠加层位置
-const setOverlayPosition = ( points, overlay) => {
-
-  const position = fromLonLat([points.lng, points.lat]);
+const setOverlayPosition = (points, overlay) => {
+  const position = fromLonLat([points.lng, points.lat])
   overlay.setPosition(position)
 }
 
@@ -48,19 +44,19 @@ const removeOverlay = (overlay) => {
 }
 
 const handleClickOnMap = (map) => {
-  map.on('click', e => {
+  map.on('click', (e) => {
     const pixel = e.pixel
-    const feature = map.forEachFeatureAtPixel(pixel, feature => {
+    const feature = map.forEachFeatureAtPixel(pixel, (feature) => {
       return feature
     })
 
-    if(feature) {
-      if(feature.get('typhoonPoint')) {
-        console.log('you click tyhoonPoint!');
+    if (feature) {
+      if (feature.get('typhoonPoint')) {
+        console.log('you click tyhoonPoint!')
       }
-    }else {
-        console.log('no click feature');
-      }
+    } else {
+      console.log('no click feature')
+    }
   })
 }
 
@@ -73,7 +69,7 @@ const handleDeletePointZoom = () => {
 }
 
 // 判断feature类型
-const typeJudgeFeature =(feature) => {
+const typeJudgeFeature = (feature) => {
   if (feature.get('typhoonPoint')) {
     return 'typhoonPoint'
   } else if (feature.get('typhoonSolar')) {
@@ -83,7 +79,4 @@ const typeJudgeFeature =(feature) => {
   }
 }
 
-export {
-  handleHoverOnMap,
-  handleClickOnMap,
-}
+export { handleHoverOnMap, handleClickOnMap }

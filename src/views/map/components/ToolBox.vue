@@ -3,6 +3,12 @@
     <el-button color="#626aef" :icon="Briefcase" plain> 工具箱 </el-button>
     <template #dropdown>
       <el-dropdown-menu>
+        <el-dropdown-item @click="handleShowPopup"
+          >点击地图查看坐标</el-dropdown-item
+        >
+        <el-dropdown-item @click="handleHidePopup"
+          >取消查看坐标</el-dropdown-item
+        >
         <el-dropdown-item @click="handleMeasureLine">测量距离</el-dropdown-item>
         <el-dropdown-item @click="stopMeasure">清除测量</el-dropdown-item>
       </el-dropdown-menu>
@@ -11,7 +17,7 @@
 </template>
 
 <script setup>
-import { inject } from 'vue'
+import { inject, onMounted } from 'vue'
 import { Briefcase } from '@element-plus/icons-vue'
 import { ZoomSlider } from 'ol/control'
 
@@ -203,6 +209,19 @@ const stopMeasure = () => {
     console.log(drawDoms.value)
   }
   drawDoms.value = []
+}
+
+// 查看当前坐标
+const isPopup = ref(false)
+
+const emits = defineEmits(['handleShowPopup', 'handleHidePopup'])
+
+const handleShowPopup = () => {
+  emits('handleShowPopup', (isPopup.value = true))
+}
+
+const handleHidePopup = () => {
+  emits('handleShowPopup', (isPopup.value = false))
 }
 </script>
 

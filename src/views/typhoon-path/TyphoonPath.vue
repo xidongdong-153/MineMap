@@ -1,7 +1,12 @@
 <template>
   <ze-map>
     <!-- view视图 -->
-    <ze-view :center="center" :zoom="5"></ze-view>
+    <ze-view
+      :center="center"
+      :zoom="2"
+      :extent="extents"
+      :showFullExtent="true"
+    ></ze-view>
     <!-- 瓦片地图 -->
     <ze-tile-layer>
       <ze-source-WMTS
@@ -25,6 +30,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import TyphoonPoint from './components/TyphoonPoint.vue'
+import { fromLonLat } from 'ol/proj'
 
 const center = [124.27, 31.1]
 
@@ -37,6 +43,11 @@ const baseLayer = 'vec',
   noteLayer = 'cva'
 
 const attributions = '加载WMTS天地图'
+
+const extents = [
+  ...fromLonLat([84.224, 18.001]),
+  ...fromLonLat([164.447, 41.241])
+]
 </script>
 
 <style lang="scss" scoped></style>
