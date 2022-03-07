@@ -4,6 +4,7 @@
     <ze-view
       :center="center"
       :zoom="2"
+      :maxZoom="18"
       :extent="extents"
       :showFullExtent="true"
     ></ze-view>

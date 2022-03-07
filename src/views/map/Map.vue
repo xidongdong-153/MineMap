@@ -5,6 +5,7 @@
         :center="center"
         :zoom="10"
         :minZoom="6"
+        :maxZoom="18"
         :extent="extents"
         :showFullExtent="true"
       ></ze-view>
