@@ -65,3 +65,37 @@
 .hidden {
   display: none;
 }
+
+
+// 卷帘 thumb
+
+$track-w: 12.5em;
+$track-h: 0.25em;
+$thumb-d: 1.5em;
+
+@mixin thumb() {
+  box-sizing: border-box;
+  border: none;
+  width: $thumb-d;
+  height: $thumb-d;
+  border-radius: 50%;
+  background: #f80;
+}
+
+[type='range'] {
+  &,
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-slider-thumb {
+    @include thumb;
+  }
+  &::-moz-range-thumb {
+    @include thumb;
+  }
+  &::-ms-thumb {
+    margin-top: 0;
+    @include thumb;
+  }
+}
