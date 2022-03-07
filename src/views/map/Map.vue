@@ -9,20 +9,7 @@
         :showFullExtent="true"
       ></ze-view>
 
-      <ze-tile-layer>
-        <ze-source-WMTS
-          :url="baseUrl"
-          :attributions="attributions"
-          :layer="baseLayer"
-        ></ze-source-WMTS>
-      </ze-tile-layer>
-      <ze-tile-layer>
-        <ze-source-WMTS
-          :url="noteUrl"
-          :attributions="attributions"
-          :layer="noteLayer"
-        ></ze-source-WMTS>
-      </ze-tile-layer>
+      <TDTLayer />
 
       <tool-box
         class="tool-box"
@@ -40,6 +27,7 @@
 <script setup>
 import { fromLonLat } from 'ol/proj'
 import { ref } from 'vue'
+import TDTLayer from './components/TDTLayer.vue'
 import ToolBox from './components/ToolBox.vue'
 
 const center = [113.312, 23.134]
@@ -51,16 +39,6 @@ const extents = [
 
 // const baseUrl = 'http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=40e50cca6823476482e8721bb2eee900'
 // const noteUrl = 'http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=40e50cca6823476482e8721bb2eee900'
-
-const baseUrl =
-  'http://t{0-7}.tianditu.gov.cn/vec_w/wmts?tk=40e50cca6823476482e8721bb2eee900'
-const noteUrl =
-  'http://t{0-7}.tianditu.gov.cn/cva_w/wmts?tk=40e50cca6823476482e8721bb2eee900'
-
-const baseLayer = 'vec',
-  noteLayer = 'cva'
-
-const attributions = '天地图XYZ'
 
 const isPopup = ref(false)
 
