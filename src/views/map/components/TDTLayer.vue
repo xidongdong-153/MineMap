@@ -1,11 +1,11 @@
 <template>
-  <input type="range" id="swipe" class="rangeMain" />
+  <input type="range" ref="swipe" class="rangeMain" />
 </template>
 
 <script setup>
 import TileLayer from 'ol/layer/Tile'
 import { XYZ } from 'ol/source'
-import { inject, onMounted } from 'vue'
+import { inject, onMounted, ref } from 'vue'
 
 const map = inject('map')
 const vecTile = new TileLayer()
@@ -33,12 +33,13 @@ map.addLayer(imgTile)
 map.addLayer(vecTile)
 map.addLayer(noteTile)
 
+const swipe = ref(null)
+
 const useSwipe = () => {
-  const swipe = document.getElementById('swipe')
   vecTile.on('prerender', function (event) {
     const ctx = event.context
 
-    const width = ctx.canvas.width * (swipe.value / 100)
+    const width = ctx.canvas.width * (swipe.value.value / 100)
 
     ctx.save()
     ctx.beginPath()
@@ -51,14 +52,14 @@ const useSwipe = () => {
     ctx.restore() // 恢复canvas设置
   })
 
-  swipe.addEventListener(
+  swipe.value.addEventListener(
     'input',
     function () {
       map.render()
     },
     false
   )
-  swipe.addEventListener(
+  swipe.value.addEventListener(
     'change',
     function () {
       map.render()
