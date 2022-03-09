@@ -8,9 +8,9 @@ import { XYZ } from 'ol/source'
 import { inject, onMounted, ref } from 'vue'
 
 const map = inject('map')
-const vecTile = new TileLayer()
-const imgTile = new TileLayer()
-const noteTile = new TileLayer()
+const vecTile = new TileLayer({ name: '天地图矢量图' })
+const imgTile = new TileLayer({ name: '天地图影像图' })
+const noteTile = new TileLayer({ name: '天地图注记图' })
 
 const vecUrl =
   'http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=40e50cca6823476482e8721bb2eee900'

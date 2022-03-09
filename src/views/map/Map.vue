@@ -9,18 +9,20 @@
         :extent="extents"
         :showFullExtent="true"
       ></ze-view>
-
+      <!-- 地图卷帘 -->
       <TDTLayer />
-
+      <!-- 工具箱 -->
       <tool-box
         class="tool-box"
         @handleShowPopup="getIsPopup"
         @handleHidePopup="hidePopup"
       ></tool-box>
-
+      <!-- 鼠标坐标弹窗 -->
       <ze-overlay :position="[0, 0]" v-if="isPopup">
         <ze-popup> </ze-popup>
       </ze-overlay>
+      <!-- 图层选择 -->
+      <LayerControl class="layer-control" />
     </ze-map>
   </div>
 </template>
@@ -30,6 +32,7 @@ import { fromLonLat } from 'ol/proj'
 import { ref } from 'vue'
 import TDTLayer from './components/TDTLayer.vue'
 import ToolBox from './components/ToolBox.vue'
+import LayerControl from './components/LayerControl.vue'
 
 const center = [113.312, 23.134]
 
@@ -72,6 +75,12 @@ const hidePopup = (val) => {
     position: absolute;
     top: 8px;
     right: 15px;
+    z-index: 10;
+  }
+  .layer-control {
+    position: absolute;
+    top: 8px;
+    right: 120px;
     z-index: 10;
   }
 }

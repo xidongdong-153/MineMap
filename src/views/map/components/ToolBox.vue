@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown>
+  <el-dropdown trigger="click">
     <el-button color="#626aef" :icon="Briefcase" plain> 工具箱 </el-button>
     <template #dropdown>
       <el-dropdown-menu>

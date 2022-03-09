@@ -4,3 +4,17 @@
 .el-form-item__content {
   margin: 0 !important;
 }
+
+.el-dropdown-menu__item:not(.is-disabled):focus {
+  background-color: #fff !important;
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: #626aef !important;
+  border-color: #626aef !important;
+}
+
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: #626aef !important;
+  border-color: #626aef !important;
+}
