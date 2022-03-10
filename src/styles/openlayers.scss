@@ -1,17 +1,12 @@
 
 .map .ol-zoomslider {
-  top: 8px;
+  top: 10px;
   left: 40px;
-  background-color: rgba(132, 0, 255, 0.2);
   width: 200px;
   height: 15px;
   padding: 0;
-  box-shadow: 0 0 5px rgb(9, 10, 82);
+  box-shadow: 0 0 5px rgb(46, 48, 119);
   border-radius: 7.5px;
-}
-
-.map .ol-zoomslider:hover {
-  background-color: rgba(16, 87, 240, 0.3);
 }
 
 .map .ol-zoomslider-thumb {
@@ -19,11 +14,7 @@
   width: 15px;
   margin: 0;
   filter: none;
-  background-color: rgba(149, 56, 236, 0.6);
   border-radius: 7.5px;
-}
-.map a.ol-zoomslider-handle:hover {
-  background-color: rgba(0, 183, 255, 0.7);
 }
 
 .ol-tooltip {
@@ -98,4 +89,19 @@ $thumb-d: 1.5em;
     margin-top: 0;
     @include thumb;
   }
+}
+
+// 鹰眼
+.ol-overviewmap {
+  bottom: 1.6em;
+}
+
+.ol-control button {
+  background: #626aef;
+}
+.ol-control button:focus,
+.ol-control button:hover,
+.ol-control button:active {
+  background: #626aef;
+  opacity: .6;
 }

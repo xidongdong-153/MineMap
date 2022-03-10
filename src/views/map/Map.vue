@@ -25,6 +25,8 @@
       <LayerControl class="layer-control" />
       <!-- 鼠标坐标&比例尺 -->
       <MousePosition />
+      <!-- 鹰眼地图 -->
+      <OverViewMap />
     </ze-map>
   </div>
 </template>
@@ -36,6 +38,7 @@ import TDTLayer from './components/TDTLayer.vue'
 import ToolBox from './components/ToolBox.vue'
 import LayerControl from './components/LayerControl.vue'
 import MousePosition from './components/MousePosition.vue'
+import OverViewMap from './components/OverViewMap.vue'
 
 const center = [113.312, 23.134]
 
