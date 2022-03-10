@@ -37,13 +37,15 @@ const treeRef = ref(null)
 const layerData = ref([
   {
     label: '天地图图层',
+    disabled: true,
     children: []
   }
 ])
 
 const defaultProps = {
   children: 'children',
-  label: 'label'
+  label: 'label',
+  disabled: 'disabled'
 }
 
 const handleCheckChange = (data) => {
