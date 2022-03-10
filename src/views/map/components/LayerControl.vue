@@ -77,7 +77,6 @@ const loadLayersControl = (map) => {
     })
     defalutCheck.value.push(parseInt(item.ol_uid))
   })
-  console.log(mapLayers.value)
   isShowTree.value = true
 }
 

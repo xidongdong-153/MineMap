@@ -23,6 +23,8 @@
       </ze-overlay>
       <!-- 图层选择 -->
       <LayerControl class="layer-control" />
+      <!-- 鼠标坐标&比例尺 -->
+      <MousePosition />
     </ze-map>
   </div>
 </template>
@@ -33,6 +35,7 @@ import { ref } from 'vue'
 import TDTLayer from './components/TDTLayer.vue'
 import ToolBox from './components/ToolBox.vue'
 import LayerControl from './components/LayerControl.vue'
+import MousePosition from './components/MousePosition.vue'
 
 const center = [113.312, 23.134]
 
