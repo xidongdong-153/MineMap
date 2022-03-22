@@ -3,14 +3,13 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
 const service = axios.create({
-  // baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 5000
 })
 
 // 请求拦截器
 service.interceptors.request.use(
   (config) => {
-
     return config // 必须返回配置
   },
   (error) => {
@@ -21,10 +20,12 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   (response) => {
-    return response
+    const { code, data } = response.data
+    if (code === 200) {
+      return data
+    }
   },
   (error) => {
-
     ElMessage.error(error.message)
     return Promise.reject(error)
   }

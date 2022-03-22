@@ -43,9 +43,12 @@ import Menu from './NavbarMenu'
 import { useRouter } from 'vue-router'
 import { ArrowDown } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
+import { useStore } from 'vuex'
 
 const router = useRouter()
+const store = useStore()
 const handleLogout = () => {
+  store.dispatch('user/logout')
   ElMessage({
     message: '退出登录~',
     type: 'success',

@@ -10,27 +10,27 @@ export default defineConfig({
   server: {
     hmr: { overlay: false },
     host: 'localhost',
-    port: 8080,
+    port: 8000,
     cors: true,
     proxy: {
       '/api': {
-        target: 'https://localhost:8000'
+        target: 'http://112.74.95.70:83'
       }
     }
   },
   plugins: [
     vue(),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver()]
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
-    }),
+      resolvers: [ElementPlusResolver()]
+    })
   ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      path: "path-browserify",
+      path: 'path-browserify'
     }
   },
   build: {

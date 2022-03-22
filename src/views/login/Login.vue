@@ -40,6 +40,8 @@
 import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { login } from '@/api/app.js'
+import { useStore } from 'vuex'
 
 const loding = ref(false)
 
@@ -51,19 +53,39 @@ const loginForm = ref({
 })
 
 const router = useRouter()
+const store = useStore()
 
 const handleLogin = () => {
-  if (loginForm.value.username !== '' && loginForm.value.password !== '') {
-    ElMessage({
-      message: '登陆成功！',
-      type: 'success',
-      center: true,
-      grouping: true,
-      duration: 2000
-    })
-    setTimeout(() => {
-      router.push('/map')
-    }, 700)
+  const { username, password } = loginForm.value
+  if (username !== '' && password !== '') {
+    login({ username, password })
+      .then((data) => {
+        if (data) {
+          store.commit('user/setToken', data.token)
+          ElMessage({
+            message: '登陆成功！',
+            type: 'success',
+            center: true,
+            grouping: true,
+            duration: 2000
+          })
+          setTimeout(() => {
+            router.push('/map')
+          }, 500)
+          return
+        } else {
+          ElMessage({
+            message: '用户名或账号错误~',
+            type: 'error',
+            center: true,
+            grouping: true,
+            duration: 2000
+          })
+        }
+      })
+      .catch((err) => {
+        reject(err)
+      })
   } else {
     ElMessage({
       message: '好像没有输入账号或者密码喔~',
